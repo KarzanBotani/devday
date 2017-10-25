@@ -1,0 +1,5 @@
+COOKIE_SECRET=5c60571bffdd7667367ae4e90ba9c97d0fb33de52c7325257b8dcf63d74a2fd1ef01c974aa4abb686c9df7f82b33fff350b05b0e3f6ca7487d0c2ccc13bc7acd
+CLOUDINARY_URL=cloudinary://333779167276662:_8jbSi9FB3sWYrfimcl8VKh34rI@keystone-demo
+
+# You will need to provide a MAILGUN_API_KEY and MAILGUN_DOMAIN to
+# get email sending working.
