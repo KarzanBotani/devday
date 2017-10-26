@@ -17,7 +17,7 @@ block intro
   .container
     .row
       .col-sm-10.col-md-10
-        h1.headlines /PROJEKT
+        h1 /PROJEKT
       .col-sm-2.col-md-2.category-dropdown
         if data.categories.length
           .dropdown
@@ -69,4 +69,4 @@ block content
           if data.category
             h3.text-muted Det finns inga projekt i kategorin #{data.category.name}.
           else
-            h3.text-muted Det finns inga projekt ännu.
+            h3.text-muted Det finns för nuvarande inga projekt.

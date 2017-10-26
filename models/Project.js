@@ -13,7 +13,11 @@ Project.add({
 	projectOwner: { type: Types.Relationship, ref: 'User', index: true, many: true, label: 'Projekt ägare' },
 	state: {
 		type: Types.Select,
-		options: 'draft, published, archived',
+		options: [
+			{ value: 'draft', label: 'Utkast' },
+			{ value: 'published', label: 'Publicerad' },
+			{ value: 'archived', label: 'Arkiverad' },
+		],
 		default: 'draft',
 		index: true,
 		label: 'Tillstånd',
@@ -24,11 +28,11 @@ Project.add({
 		dependsOn: {
 			state: 'published',
 		},
-		label: 'Publicerad',
+		label: 'Publicerat datum',
 	},
 	image: { type: Types.CloudinaryImage, label: 'Bild' },
-	purpose: { type: Types.Html, wysiwyg: true, height: 200, label: 'Syfte' },
-	goal: { type: Types.Html, wysiwyg: true, height: 200, label: 'Mål' },
+	purpose: { type: Types.Html, wysiwyg: true, height: 150, label: 'Syfte' },
+	goal: { type: Types.Html, wysiwyg: true, height: 150, label: 'Mål' },
 	currentMaterial: { type: Types.Html, wysiwyg: true, height: 150, label: 'Nuvarande material' },
 	individualROI: { type: Types.Html, wysiwyg: true, height: 150, label: 'Individuell ROI' },
 	oddHillROI: { type: Types.Html, wysiwyg: true, height: 150, label: 'Odd Hill ROI' },
