@@ -7,16 +7,16 @@ let Enquiry = new keystone.List('Enquiry', {
 });
 
 Enquiry.add({
-	name: { type: Types.Name, required: true },
-	email: { type: Types.Email, required: true },
-	phone: { type: String },
+	name: { type: Types.Name, required: true, label: 'Namn: ' },
+	email: { type: Types.Email, required: true, label: 'E-post: ' },
+	phone: { type: String, label: 'Telefonnummer: ' },
 	enquiryType: { type: Types.Select, options: [
 		{ value: 'message', label: 'Just leaving a message' },
 		{ value: 'question', label: 'I\'ve got a question' },
 		{ value: 'other', label: 'Something else...' },
 	] },
-	message: { type: Types.Markdown, required: true },
-	createdAt: { type: Date, default: Date.now },
+	message: { type: Types.Markdown, required: true, label: 'Meddelande: ' },
+	createdAt: { type: Date, default: Date.now, label: 'Skapad: ' },
 });
 
 Enquiry.schema.pre('save', function (next) {

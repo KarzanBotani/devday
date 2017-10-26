@@ -5,7 +5,7 @@ let PostCategory = new keystone.List('PostCategory', {
 });
 
 PostCategory.add({
-	name: { type: String, required: true },
+	name: { type: String, required: true, label: 'Kategorinamn' },
 });
 
 PostCategory.relationship({ ref: 'Post', path: 'posts', refPath: 'categories' });

@@ -4,11 +4,11 @@ let Types = keystone.Field.Types;
 let User = new keystone.List('User');
 
 User.add({
-	name: { type: Types.Name, required: true, index: true },
-	email: { type: Types.Email, initial: true, required: true, unique: true, index: true },
-	password: { type: Types.Password, initial: true, required: true },
+	name: { type: Types.Name, required: true, index: true, label: 'Namn' },
+	email: { type: Types.Email, initial: true, required: true, unique: true, index: true, label: 'E-post' },
+	password: { type: Types.Password, initial: true, required: true, label: 'Lösenord' },
 }, 'Permissions', {
-	isAdmin: { type: Boolean, label: 'Can access Keystone', index: true },
+	isAdmin: { type: Boolean, label: 'Can access Keystone', index: true, label: 'Admin?' },
 });
 
 // PROVIDE ACCESS TO KEYSTONE

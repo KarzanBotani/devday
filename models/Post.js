@@ -7,16 +7,16 @@ let Post = new keystone.List('Post', {
 });
 
 Post.add({
-	title: { type: String, required: true },
-	state: { type: Types.Select, options: 'draft, published, archived', default: 'draft', index: true },
-	author: { type: Types.Relationship, ref: 'User', index: true },
-	publishedDate: { type: Types.Date, index: true, dependsOn: { state: 'published' } },
-	image: { type: Types.CloudinaryImage },
+	title: { type: String, required: true, label: 'Titel' },
+	state: { type: Types.Select, options: 'draft, published, archived', default: 'draft', index: true, label: 'Tillstånd' },
+	author: { type: Types.Relationship, ref: 'User', index: true, label: 'Författare' },
+	publishedDate: { type: Types.Date, index: true, dependsOn: { state: 'published' }, label: 'Publicerad' },
+	image: { type: Types.CloudinaryImage, label: 'Bild' },
 	content: {
-		brief: { type: Types.Html, wysiwyg: true, height: 150 },
-		extended: { type: Types.Html, wysiwyg: true, height: 400 },
+		brief: { type: Types.Html, wysiwyg: true, height: 150, label: 'Ingress' },
+		extended: { type: Types.Html, wysiwyg: true, height: 400, label: 'Brödtext' },
 	},
-	categories: { type: Types.Relationship, ref: 'PostCategory', many: true },
+	categories: { type: Types.Relationship, ref: 'PostCategory', many: true, label: 'Kategori(er)' },
 });
 
 Post.schema.virtual('content.full').get(function () {
