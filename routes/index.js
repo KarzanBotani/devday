@@ -20,8 +20,5 @@ exports = module.exports = function (app) {
 	app.get('/projects/:category?', routes.views.projects);
 	app.get('/projects/project/:project', routes.views.project);
 	app.all('/contact', routes.views.contact);
-
-	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
-	// app.get('/protected', middleware.requireUser, routes.views.protected);
-
+	app.all('/subscribe', routes.views.subscribe);
 };

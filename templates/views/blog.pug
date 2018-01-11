@@ -2,52 +2,57 @@ extends ../layouts/default
 
 mixin post(post)
 	.post(data-ks-editable=editable(user, { list: 'Post', id: post.id }))
-		h2: a(href='/blog/post/' + post.slug)= post.title
-		p.lead.text-muted Publicerad
-			if post.publishedDate
-				| #{post._.publishedDate.format('MMMM Do, YYYY')}
-			if post.categories && post.categories.length
-				| i
-				each cat, i in post.categories
-					a(href='/blog/' + cat.key)= cat.name
-					if i < post.categories.length - 1
-						| ,
-					else
+		.blog-div
+			.blog-pull-left
+				a(href='/blog/post/' + post.slug)
+					img(src=post._.image.fit()).img.img-responsive.pull-left.cover.img-left
+				a(href='/blog/post/' + post.slug)
+					time.blog-published-date
+						span.blog-post-date= post._.publishedDate.format('YYYY-MM-DD')
+			.blog-pull-right
+				h2.blog-post-headline: a(href='/blog/post/' + post.slug)= post.title
+				.blog-textbody
+					p!= post.content.brief
+				.blog-post-author
+					span!= post.author.name.full
+				.blog-post-category
+					if post.categories && post.categories.length
 						|
-			if post.author
-				| av #{post.author.name.first}
-		if post.image.exists
-			img(src=post._.image.fit(160,160)).img.pull-right
-		p!= post.content.brief
-		if post.content.extended
-			p.read-more: a(href='/blog/post/' + post.slug) Läs vidare
+						each cat, i in post.categories
+							a(href='/blog/' + cat.key)= '#' + cat.name
+							if i < post.categories.length - 1
+								| ,
+							else
+								|
+				if post.content.extended
+					.read-more
+						a(href='/blog/post/' + post.slug).blog-read-more Läs mer
+
+
 
 block intro
 	.container
 		.row
-			.col-sm-10.col-md-10
-				h1 /BLOGG
+			.col-xs-6.col-sm-10.col-md-10
+				h3 /BLOGG
+			.col-xs-5.col-sm-2.col-md-2.category-dropdown
+				if data.categories.length
+					.dropdown
+						button#blogDropdownMenu.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
+							| Kategorier&nbsp;
+						ul.dropdown-menu(aria-labelledby='blogDropdownMenu')
+							li
+								a(href='/blog', class=!data.category ? 'active' : false).list-group-item Alla inlägg
+							each cat in data.categories
+								li
+									a(href='/blog/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name
 
 block content
 	.container: .row
-		.col-sm-8.col-md-9
-			if filters.category && !data.category
-				h3.text-muted Ogiltig kategori.
-			else
-				if data.posts.results.length
-					if data.posts.totalPages > 1
-						h4.text-weight-normal Visar
-							strong #{data.posts.first}
-							|  till
-							strong #{data.posts.last}
-							|  av
-							strong #{data.posts.total}
-							|  inlägg.
-					else
-						h4.text-weight-normal Visar #{utils.plural(data.posts.results.length, '* post')}.
-					.blog
-						each post in data.posts.results
-							+post(post)
+		.col-sm-12.col-md-12
+			.blog
+				each post in data.posts.results
+					+post(post)
 
 					if data.posts.totalPages > 1
 						ul.pagination
@@ -68,10 +73,5 @@ block content
 					else
 						h3.text-muted Det finns för nuvarande inga blogginlägg!
 
-		if data.categories.length
-			.col-sm-4.col-md-3
-				h2 Kategorier
-				.list-group(style='margin-top: 70px;')
-					a(href='/blog', class=!data.category ? 'active' : false).list-group-item Alla kategorier
-					each cat in data.categories
-						a(href='/blog/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name
+
+

@@ -31,20 +31,14 @@ Project.add({
 		label: 'Publicerat datum',
 	},
 	image: { type: Types.CloudinaryImage, label: 'Bild' },
-	purpose: { type: Types.Html, wysiwyg: true, height: 150, label: 'Syfte' },
-	goal: { type: Types.Html, wysiwyg: true, height: 150, label: 'Mål' },
-	currentMaterial: { type: Types.Html, wysiwyg: true, height: 150, label: 'Nuvarande material' },
-	individualROI: { type: Types.Html, wysiwyg: true, height: 150, label: 'Individuell ROI' },
-	oddHillROI: { type: Types.Html, wysiwyg: true, height: 150, label: 'Odd Hill ROI' },
-	technicalChoice: { type: Types.Html, wysiwyg: true, height: 150, label: 'Tekniskt val' },
+	content: {
+		brief: { type: Types.Html, wysiwyg: true, height: 150, label: 'Ingress' },
+		extended: { type: Types.Html, wysiwyg: true, height: 300, label: 'Projektbeskrivning' },
+	},
 	participants: { type: Types.Relationship, ref: 'User', index: true, many: true, label: 'Deltagare' },
-	neededResources: { type: Types.Html, wysiwyg: true, height: 150, label: 'Behövd material' },
-	timePlan: { type: Types.Html, wysiwyg: true, height: 100, label: 'Tidsplan' },
-	finishedWhen: { type: Types.Html, wysiwyg: true, height: 100, label: 'Färdigt när' },
-	contactPerson: { type: Types.Relationship, ref: 'User', index: true, many: true, label: 'Kontaktperson' },
 	categories: { type: Types.Relationship, ref: 'ProjectCategory', many: true, label: 'Kategori(er)' },
 });
 
-Project.defaultColumns = 'title, state|20%, projectOwner|20%, categories|20%, publishedDate|20%';
+Project.defaultColumns = 'title, state|20%, categories|20%, publishedDate|20%';
 
 Project.register();

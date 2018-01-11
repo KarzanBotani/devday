@@ -1,40 +1,33 @@
 extends ../layouts/default
 
 mixin project(project)
-  .projects.col-sm-4.col-md-3(data-ks-editable=editable(user, { list: 'Project', id: project.id }))
-    h3.projects-header.headlines: a(href='/projects/project/' + project.slug)= project.title
-    if project.image.exists
-      img(src=project._.image.fit(160,160)).img.pull-right
-    .projects-text
-      if project.purpose
-        b Syfte
-        != project.purpose
-      if project.goal
-        b Mål
-        != project.goal
+  .col-xs-12.col-sm-3
+    .projects(data-ks-editable=editable(user, { list: 'Project', id: project.id }))
+      h4.projects-title.text-center: a(href='/projects/project/' + project.slug)= project.title
+      if project.content.brief
+        .projects-text.p!= project.content.brief
 
 block intro
   .container
     .row
-      .col-sm-10.col-md-10
-        h1 /PROJEKT
-      .col-sm-2.col-md-2.category-dropdown
+      .col-xs-6.col-sm-10.col-md-10
+        h3 /PROJEKT
+      .col-xs-5.col-sm-2.col-md-2.category-dropdown
         if data.categories.length
           .dropdown
-            button#dropdownMenu1.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
+            button#projectsDropdownMenu.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
               | Kategorier&nbsp;
-              span.caret
-            ul.dropdown-menu(aria-labelledby='dropdownMenu1')
+            ul.dropdown-menu(aria-labelledby='projectsDropdownMenu')
               li
-                a(href='/projects', class=!data.category ? 'active' : false) Alla projekt
+                a(href='/projects', class=!data.category ? 'active' : false).list-group-item Alla projekt
               each cat in data.categories
                 li
-                  a(href='/projects/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).active= '#' + cat.name
+                  a(href='/projects/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name
 
 
 block content
   .container: .row
-    .col-sm-9.col-md-12.try-projects
+    .col-sm-12.col-md-12.try-projects
       if filters.category && !data.category
         h3.text-muted Felaktig kategori.
       else
@@ -67,6 +60,6 @@ block content
                 li.disabled: a(href='?page=' + data.projects.totalPages): span.entypo.glyphicon.glyphicon-chevron-right
         else
           if data.category
-            h3.text-muted Det finns inga projekt i kategorin #{data.category.name}.
+            h3.text-muted defaultt finns inga projekt i kategorin #{data.category.name}.
           else
             h3.text-muted Det finns för nuvarande inga projekt.

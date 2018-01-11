@@ -6,7 +6,6 @@ exports = module.exports = function (req, res) {
 	let view = new keystone.View(req, res);
 	let locals = res.locals;
 
-	// Init locals
 	locals.section = 'blog';
 	locals.filters = {
 		category: req.params.category,

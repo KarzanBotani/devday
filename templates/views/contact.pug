@@ -2,14 +2,15 @@ extends ../layouts/default
 
 block intro
 	.container
-		h1 Kontakta oss
+		.row: .col-xs-12.col-sm-offset-3.col-sm-8.col-md-6
+			h3 /KONTAKT
 
 block content
 	.container
 		if enquirySubmitted
 			h3 Tack för att du kontaktar oss! :)
 		else
-			.row: .col-sm-8.col-md-6
+			.row: .col-xs-12.col-sm-offset-3.col-sm-8.col-md-6
 				form(method='post')
 					input(type='hidden', name='action', value='contact')
 					.form-group(class=validationErrors.name ? 'has-error' : null)
@@ -20,11 +21,11 @@ block content
 						input(type='email', name='email', value=formData.email).form-control
 					.form-group
 						label Telefonnummer
-						input(type='text', name='phone', value=formData.phone, placeholder='(optional)').form-control
+						input(type='text', name='phone', value=formData.phone, placeholder='(frivilligt)').form-control
 					.form-group(class=validationErrors.enquiryType ? 'has-error' : null)
 						label Hur kan vi hjälpa dig?
 						select(name='enquiryType').form-control
-							option(value='') (välj)
+							option(value='') (alternativ)
 							each type in enquiryTypes
 								option(value=type.value, selected=formData.enquiryType == type.value)= type.label
 					.form-group(class=validationErrors.message ? 'has-error' : null)

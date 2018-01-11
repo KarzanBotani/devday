@@ -1,0 +1,64 @@
+extends ../layouts/default
+
+mixin project(project)
+  .projects.col-sm-3(data-ks-editable=editable(user, { list: 'Project', id: project.id }))
+    h4.projects-title.text-center: a(href='/projects/project/' + project.slug)= project.title
+    if project.content.brief
+      .projects-text.p!= project.content.brief
+
+block intro
+  .container
+    .row
+      .col-sm-10.col-md-10
+        h1 /PROJEKT
+      .col-sm-2.col-md-2.category-dropdown
+        if data.categories.length
+          .dropdown
+            button#projectsDropdownMenu.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
+              | Kategorier&nbsp;
+            ul.dropdown-menu(aria-labelledby='projectsDropdownMenu')
+              li
+                a(href='/projects', class=!data.category ? 'active' : false).list-group-item Alla projekt
+              each cat in data.categories
+                li
+                  a(href='/projects/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name
+
+
+block content
+  .container: .row
+    .col-sm-9.col-md-12.try-projects
+      if filters.category && !data.category
+        h3.text-muted Felaktig kategori.
+      else
+        if data.projects.results.length
+          if data.projects.totalPages > 1
+            h4.text-weight-normal Visar
+              strong #{data.projects.first}
+              |  till
+              strong #{data.projects.last}
+              |  av
+              strong #{data.projects.total}
+              |  projekt.
+
+          .all-projects.col-sm-offset-2
+            each project in data.projects.results
+              +project(project)
+
+          if data.projects.totalPages > 1
+            ul.pagination
+              if data.projects.previous
+                li: a(href='?page=' + data.projects.previous): span.glyphicon.glyphicon-chevron-left
+              else
+                li.disabled: a(href='?page=' + 1): span.glyphicon.glyphicon-chevron-left
+              each p, i in data.projects.pages
+                li(class=data.projects.currentPage == p ? 'active' : null)
+                  a(href='?page=' + (p == '...' ? (i ? data.projects.totalPages : 1) : p ))= p
+              if data.projects.next
+                li: a(href='?page=' + data.projects.next): span.glyphicon.glyphicon-chevron-right
+              else
+                li.disabled: a(href='?page=' + data.projects.totalPages): span.entypo.glyphicon.glyphicon-chevron-right
+        else
+          if data.category
+            h3.text-muted Det finns inga projekt i kategorin #{data.category.name}.
+          else
+            h3.text-muted Det finns för nuvarande inga projekt.

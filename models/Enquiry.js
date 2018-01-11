@@ -11,9 +11,9 @@ Enquiry.add({
 	email: { type: Types.Email, required: true, label: 'E-post: ' },
 	phone: { type: String, label: 'Telefonnummer: ' },
 	enquiryType: { type: Types.Select, options: [
-		{ value: 'message', label: 'Just leaving a message' },
-		{ value: 'question', label: 'I\'ve got a question' },
-		{ value: 'other', label: 'Something else...' },
+		{ value: 'question', label: 'Jag har en fråga!' },
+		{ value: 'attending', label: 'Jag vill anmäla mig till Utvecklardagen' },
+		{ value: 'other', label: 'Övrigt' },
 	] },
 	message: { type: Types.Markdown, required: true, label: 'Meddelande: ' },
 	createdAt: { type: Date, default: Date.now, label: 'Skapad: ' },
@@ -30,11 +30,12 @@ Enquiry.schema.post('save', function () {
 	}
 });
 
+/* E-MAIL NOTIFICATION WHEN AN ENQUIRY IS SUBMITTED */
 Enquiry.schema.methods.sendNotificationEmail = function (callback) {
 	if (typeof callback !== 'function') {
 		callback = function (err) {
 			if (err) {
-				console.error('There was an error sending the notification email:', err);
+				console.error('There was an error sending the notification email to ADMIN:', err);
 			}
 		};
 	}
@@ -47,22 +48,29 @@ Enquiry.schema.methods.sendNotificationEmail = function (callback) {
 	let enquiry = this;
 	let brand = keystone.get('brand');
 
-	keystone.list('User').model.find().where('isAdmin', true).exec(function (err, admins) {
-		if (err) return callback(err);
-		new keystone.Email({
-			templateName: 'enquiry-notification',
-			transport: 'mailgun',
-		}).send({
-			to: admins,
-			from: {
-				name: 'devday',
-				email: 'contact@devday.com',
-			},
-			subject: 'New Enquiry for devday',
-			enquiry: enquiry,
-			brand: brand,
-		}, callback);
+	keystone.list('User').model.find().where('isAdmin', true).exec(function (err, admin) {
+
+		if (err) {
+			return callback(err);
+		} else {
+
+			/* TO ADMIN */
+			new keystone.Email({
+				templateName: 'enquiry-notification',
+				transport: 'mailgun',
+			}).send({
+				to: admin,
+				from: {
+					name: 'devday',
+					email: 'contact@devday.com',
+				},
+				subject: 'New enquiry was submitted to devday!',
+				enquiry: enquiry,
+				brand: brand,
+			}, callback);
+		}
 	});
+
 };
 
 Enquiry.defaultSort = '-createdAt';

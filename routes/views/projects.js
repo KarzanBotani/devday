@@ -6,7 +6,7 @@ exports = module.exports = function (req, res) {
 	let view = new keystone.View(req, res);
 	let locals = res.locals;
 
-	locals.section = 'project';
+	locals.section = 'projects';
 	locals.filters = {
 		category: req.params.category,
 		user: req.params.user,

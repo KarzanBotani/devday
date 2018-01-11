@@ -9,17 +9,22 @@ keystone.init({
 	'name': 'devday',
 	'brand': 'devday',
 
+	'favicon': 'public/favicon.ico',
 	'less': 'public',
 	'static': 'public',
-	'favicon': 'public/favicon.ico',
+
 	'views': 'templates/views',
 	'view engine': 'pug',
+	'view cache': false,
 
 	'emails': 'templates/emails',
+	'mailgun api key': process.env.MAILGUN_API_KEY,
+	'mailgun domain': process.env.MAILGUN_DOMAIN,
 
-	'auto update': true,
-	'session': true,
 	'auth': true,
+	'auto update': true,
+	'cookie secret': process.env.COOKIE_SECRET || 'devday',
+	'session': true,
 	'user model': 'User',
 });
 
@@ -39,7 +44,6 @@ keystone.set('locals', {
 // Load your project's Routes
 keystone.set('routes', require('./routes'));
 
-
 // Configure the navigation bar in Keystone's Admin UI
 keystone.set('nav', {
 	posts: ['posts', 'post-categories'],
@@ -47,6 +51,8 @@ keystone.set('nav', {
 	enquiries: 'enquiries',
 	users: 'users',
 });
+
+keystone.set('cloudinary prefix', 'devday');
 
 if (!process.env.MAILGUN_API_KEY || !process.env.MAILGUN_DOMAIN) {
 	console.log('----------------------------------------'
