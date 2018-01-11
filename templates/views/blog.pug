@@ -40,7 +40,7 @@ block intro
 					.dropdown
 						button#blogDropdownMenu.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
 							| Kategorier&nbsp;
-						ul.dropdown-menu(aria-labelledby='blogDropdownMenu')
+						ul.dropdown-menu.dropdown-menu-right(aria-labelledby='blogDropdownMenu')
 							li
 								a(href='/blog', class=!data.category ? 'active' : false).list-group-item Alla inlägg
 							each cat in data.categories

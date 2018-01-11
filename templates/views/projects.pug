@@ -17,7 +17,7 @@ block intro
           .dropdown
             button#projectsDropdownMenu.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
               | Kategorier&nbsp;
-            ul.dropdown-menu(aria-labelledby='projectsDropdownMenu')
+            ul.dropdown-menu.dropdown-menu-right(aria-labelledby='projectsDropdownMenu')
               li
                 a(href='/projects', class=!data.category ? 'active' : false).list-group-item Alla projekt
               each cat in data.categories

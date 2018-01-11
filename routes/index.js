@@ -20,5 +20,4 @@ exports = module.exports = function (app) {
 	app.get('/projects/:category?', routes.views.projects);
 	app.get('/projects/project/:project', routes.views.project);
 	app.all('/contact', routes.views.contact);
-	app.all('/subscribe', routes.views.subscribe);
 };
