@@ -31,47 +31,47 @@ Enquiry.schema.post('save', function () {
 });
 
 /* E-MAIL NOTIFICATION WHEN AN ENQUIRY IS SUBMITTED */
-Enquiry.schema.methods.sendNotificationEmail = function (callback) {
-	if (typeof callback !== 'function') {
-		callback = function (err) {
-			if (err) {
-				console.error('There was an error sending the notification email to ADMIN:', err);
-			}
-		};
-	}
+// Enquiry.schema.methods.sendNotificationEmail = function (callback) {
+// 	if (typeof callback !== 'function') {
+// 		callback = function (err) {
+// 			if (err) {
+// 				console.error('There was an error sending the notification email to ADMIN:', err);
+// 			}
+// 		};
+// 	}
 
-	if (!process.env.MAILGUN_API_KEY || !process.env.MAILGUN_DOMAIN) {
-		console.log('Unable to send email - no mailgun credentials provided');
-		return callback(new Error('could not find mailgun credentials'));
-	}
+// 	if (!process.env.MAILGUN_API_KEY || !process.env.MAILGUN_DOMAIN) {
+// 		console.log('Unable to send email - no mailgun credentials provided');
+// 		return callback(new Error('could not find mailgun credentials'));
+// 	}
 
-	let enquiry = this;
-	let brand = keystone.get('brand');
+// 	let enquiry = this;
+// 	let brand = keystone.get('brand');
 
-	keystone.list('User').model.find().where('isAdmin', true).exec(function (err, admin) {
+// 	keystone.list('User').model.find().where('isAdmin', true).exec(function (err, admin) {
 
-		if (err) {
-			return callback(err);
-		} else {
+// 		if (err) {
+// 			return callback(err);
+// 		} else {
 
-			/* TO ADMIN */
-			new keystone.Email({
-				templateName: 'enquiry-notification',
-				transport: 'mailgun',
-			}).send({
-				to: admin,
-				from: {
-					name: 'devday',
-					email: 'contact@devday.com',
-				},
-				subject: 'New enquiry was submitted to devday!',
-				enquiry: enquiry,
-				brand: brand,
-			}, callback);
-		}
-	});
+// 			/* TO ADMIN */
+// 			new keystone.Email({
+// 				templateName: 'enquiry-notification',
+// 				transport: 'mailgun',
+// 			}).send({
+// 				to: admin,
+// 				from: {
+// 					name: 'devday',
+// 					email: 'contact@devday.com',
+// 				},
+// 				subject: 'New enquiry was submitted to devday!',
+// 				enquiry: enquiry,
+// 				brand: brand,
+// 			}, callback);
+// 		}
+// 	});
 
-};
+// };
 
 Enquiry.defaultSort = '-createdAt';
 Enquiry.defaultColumns = 'name, email, enquiryType, createdAt';
