@@ -3,11 +3,14 @@
 require('dotenv').config();
 
 // Require keystone
-let keystone = require('keystone');
+let keystone = require('keystone'),
+	pkg = require('./package.json');
 
 keystone.init({
 	'name': 'devday',
 	'brand': 'devday',
+
+	'cloudinary secure': true,
 
 	'favicon': 'public/favicon.ico',
 	'less': 'public',
@@ -15,25 +18,24 @@ keystone.init({
 
 	'views': 'templates/views',
 	'view engine': 'pug',
-	'view cache': false,
 
 	'emails': 'templates/emails',
+
 	'mailgun api key': process.env.MAILGUN_API_KEY,
 	'mailgun domain': process.env.MAILGUN_DOMAIN,
+
+	'mongo': process.env.MONGO_URI || 'mongodb://localhost/' + pkg.name,
 
 	'auth': true,
 	'auto update': true,
 	'cookie secret': process.env.COOKIE_SECRET || 'devday',
 	'session': true,
+	'session store': 'mongo',
 	'user model': 'User',
 });
 
-// Load your project's Models
 keystone.import('models');
 
-// Setup common locals for your templates. The following are required for the
-// bundled templates and layouts. Any runtime locals (that should be set uniquely
-// for each request) should be added to ./routes/middleware.js
 keystone.set('locals', {
 	_: require('lodash'),
 	env: keystone.get('env'),
@@ -41,10 +43,8 @@ keystone.set('locals', {
 	editable: keystone.content.editable,
 });
 
-// Load your project's Routes
 keystone.set('routes', require('./routes'));
 
-// Configure the navigation bar in Keystone's Admin UI
 keystone.set('nav', {
 	posts: ['posts', 'post-categories'],
 	projects: ['projects', 'project-categories'],
