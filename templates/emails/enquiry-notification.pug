@@ -1,27 +1,23 @@
-doctype html
-html
+extends ../layouts/default
 
-	//- HTML HEADER
-	head
-		meta(charset="utf-8")
-	body
-		h1 Hej %recipient.firstName%,
-		p.text-larger En förfrågan skickades till #{brand};
-		if enquiry.name.full || enquiry.email
-			p.text-larger Från
-				if enquiry.name.full
-					| <strong> #{enquiry.name.full}</strong>
-				if enquiry.name.full && enquiry.email
-					|  (
-				if enquiry.email
-					| <a href="mailto:#{enquiry.email}">#{enquiry.email}</a>
-				if enquiry.name.full && enquiry.email
-					| )
-		if enquiry.phone
-			p.text-larger Telefonnummer: #{enquiry.phone}
-		if enquiry.enquiryType
-			p.text-larger #{enquiry._.enquiryType.format()}
-		if enquiry.message
-			.text-larger !{enquiry.message.html}
-		p.text-muted Skickat #{enquiry._.createdAt.format()}
-		p &nbsp;
+block content
+	h1 Hej %recipient.firstName%,
+	p.text-larger En förfrågan skickades till #{brand};
+	if enquiry.name.full || enquiry.email
+		p.text-larger Från
+			if enquiry.name.full
+				| <strong> #{enquiry.name.full}</strong>
+			if enquiry.name.full && enquiry.email
+				|  (
+			if enquiry.email
+				| <a href="mailto:#{enquiry.email}">#{enquiry.email}</a>
+			if enquiry.name.full && enquiry.email
+				| )
+	if enquiry.phone
+		p.text-larger Telefonnummer: #{enquiry.phone}
+	if enquiry.enquiryType
+		p.text-larger #{enquiry._.enquiryType.format()}
+	if enquiry.message
+		.text-larger !{enquiry.message.html}
+	p.text-muted Skickat #{enquiry._.createdAt.format()}
+	p &nbsp;
