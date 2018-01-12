@@ -1,23 +1,26 @@
-extends ../layouts/default
-
-block content
-	h1 Hej %recipient.firstName%,
-	p.text-larger En förfrågan skickades till #{brand};
-	if enquiry.name.full || enquiry.email
-		p.text-larger Från
-			if enquiry.name.full
-				| <strong> #{enquiry.name.full}</strong>
-			if enquiry.name.full && enquiry.email
-				|  (
-			if enquiry.email
-				| <a href="mailto:#{enquiry.email}">#{enquiry.email}</a>
-			if enquiry.name.full && enquiry.email
-				| )
-	if enquiry.phone
-		p.text-larger Telefonnummer: #{enquiry.phone}
-	if enquiry.enquiryType
-		p.text-larger #{enquiry._.enquiryType.format()}
-	if enquiry.message
-		.text-larger !{enquiry.message.html}
-	p.text-muted Skickat #{enquiry._.createdAt.format()}
-	p &nbsp;
+doctype html
+html
+	head
+	body
+		h1 Hej,
+		p En förfrågan har skickats till #{brand}!
+		if enquiry.name.full || enquiry.email
+			p.text-larger <strong>Från: </strong>
+				if enquiry.name.full
+					| #{enquiry.name.full}
+				if enquiry.name.full && enquiry.email
+					|  (
+				if enquiry.email
+					| <a href="mailto:#{enquiry.email}">#{enquiry.email}</a>
+				if enquiry.name.full && enquiry.email
+					| )
+		if enquiry.phone
+			p <strong>Telefonnummer: </strong>#{enquiry.phone}
+		if enquiry.enquiryType
+			p <strong>Ämne: </strong> #{enquiry._.enquiryType.format()}
+		if enquiry.message
+			p <strong>Meddelande:</strong>
+			p !{enquiry.message.html}
+		p
+			<strong>Skickat:</strong> #{enquiry._.createdAt.format('YYYY/MM/DD')}
+		p &nbsp;

@@ -41,9 +41,8 @@ block content
               strong #{data.projects.total}
               |  projekt.
 
-          .all-projects
-            each project in data.projects.results
-              +project(project)
+          each project in data.projects.results
+            +project(project)
 
           if data.projects.totalPages > 1
             ul.pagination
@@ -60,6 +59,6 @@ block content
                 li.disabled: a(href='?page=' + data.projects.totalPages): span.entypo.glyphicon.glyphicon-chevron-right
         else
           if data.category
-            h3.text-muted defaultt finns inga projekt i kategorin #{data.category.name}.
+            h3.text-muted Det finns för närvarande inga projekt i kategorin #{data.category.name}.
           else
             h3.text-muted Det finns för nuvarande inga projekt.

@@ -26,7 +26,6 @@ Post.add({
 		brief: { type: Types.Html, wysiwyg: true, height: 150, label: 'Ingress' },
 		extended: { type: Types.Html, wysiwyg: true, height: 400, label: 'Brödtext' },
 	},
-	// code: { type: Types.Code, height: 300 },
 	categories: { type: Types.Relationship, ref: 'PostCategory', many: true, label: 'Kategori(er)' },
 });
 

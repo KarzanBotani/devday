@@ -2,17 +2,17 @@ let keystone = require('keystone');
 let middleware = require('./middleware');
 let importRoutes = keystone.importer(__dirname);
 
-// COMMON MIDDLEWARE
+// common middleware
 keystone.pre('routes', middleware.initErrorHandlers);
 keystone.pre('routes', middleware.initLocals);
 keystone.pre('render', middleware.flashMessages);
 
-// Handle 404 errors
+// handle 404 errors
 keystone.set('404', function (req, res, next) {
 	res.notfound();
 });
 
-// Handle other errors
+// handle other errors
 keystone.set('500', function (err, req, res, next) {
 	let title, message;
 	if (err instanceof Error) {
@@ -22,14 +22,14 @@ keystone.set('500', function (err, req, res, next) {
 	res.err(err, title, message);
 });
 
-// IMPORT ROUTE CONTROLLERS
+// import route controllers
 let routes = {
 	views: importRoutes('./views'),
 };
 
-// SETUP ROUTE BINDINGS
+// setup route bindings
 exports = module.exports = function (app) {
-	// VIEWS
+	// views
 	app.get('/', routes.views.index);
 	app.get('/blog/:category?', routes.views.blog);
 	app.get('/blog/post/:post', routes.views.post);

@@ -1,22 +1,22 @@
-let keystone = require('keystone');
-let Types = keystone.Field.Types;
+var keystone = require('keystone');
+var Types = keystone.Field.Types;
 
-let Enquiry = new keystone.List('Enquiry', {
+var Enquiry = new keystone.List('Enquiry', {
 	nocreate: true,
 	noedit: true,
 });
 
 Enquiry.add({
-	name: { type: Types.Name, required: true, label: 'Namn: ' },
-	email: { type: Types.Email, required: true, label: 'E-post: ' },
-	phone: { type: String, label: 'Telefonnummer: ' },
+	name: { type: Types.Name, required: true },
+	email: { type: Types.Email, required: true },
+	phone: { type: String },
 	enquiryType: { type: Types.Select, options: [
-		{ value: 'question', label: 'Jag har en fråga!' },
-		{ value: 'attending', label: 'Jag vill anmäla mig till Utvecklardagen' },
-		{ value: 'other', label: 'Övrigt' },
-	] },
-	message: { type: Types.Markdown, required: true, label: 'Meddelande: ' },
-	createdAt: { type: Date, default: Date.now, label: 'Skapad: ' },
+		{ value: 'question', label: 'Jag har en fråga' },
+		{ value: 'devday', label: 'Jag vill anmäla mig till utvecklardagen!' },
+		{ value: 'client', label: 'Intresseanmälan om konsulttid' },
+	], required: true, emptyOption: false },
+	message: { type: Types.Markdown },
+	createdAt: { type: Types.Date, default: Date.now },
 });
 
 Enquiry.schema.pre('save', function (next) {
@@ -30,12 +30,11 @@ Enquiry.schema.post('save', function () {
 	}
 });
 
-/* E-MAIL NOTIFICATION WHEN AN ENQUIRY IS SUBMITTED */
 Enquiry.schema.methods.sendNotificationEmail = function (callback) {
 	if (typeof callback !== 'function') {
 		callback = function (err) {
 			if (err) {
-				console.error('There was an error sending the notification email to ADMIN:', err);
+				console.error('There was an error sending the notification email:', err);
 			}
 		};
 	}
@@ -45,34 +44,27 @@ Enquiry.schema.methods.sendNotificationEmail = function (callback) {
 		return callback(new Error('could not find mailgun credentials'));
 	}
 
-	let enquiry = this;
-	let brand = keystone.get('brand');
+	var enquiry = this;
+	var brand = keystone.get('brand');
 
-	keystone.list('User').model.find().where('isAdmin', true).exec(function (err, admin) {
-
-		if (err) {
-			return callback(err);
-		} else {
-
-			/* TO ADMIN */
-			new keystone.Email({
-				templateName: 'enquiry-notification',
-				transport: 'mailgun',
-			}).send({
-				to: admin,
-				from: {
-					name: 'devday',
-					email: 'contact@devday.com',
-				},
-				subject: 'New enquiry was submitted to devday!',
-				enquiry: enquiry,
-				brand: brand,
-			}, callback);
-		}
+	keystone.list('User').model.find().where('isAdmin', true).exec(function (err, admins) {
+		if (err) return callback(err);
+		new keystone.Email({
+			templateName: 'enquiry-notification',
+			transport: 'mailgun',
+		}).send({
+	 		to: 'karzan@botani.nu',
+			from: {
+				name: 'Utvecklardag',
+				email: 'utvecklardag@oddhill.se',
+			},
+			subject: 'New enquiry for categories',
+			enquiry: enquiry,
+			brand: brand,
+		}, callback);
 	});
-
 };
 
 Enquiry.defaultSort = '-createdAt';
-Enquiry.defaultColumns = 'name, email, enquiryType, createdAt';
+Enquiry.defaultColumns = 'name|25%, email|25%, enquiryType|25%, createdAt|25%';
 Enquiry.register();

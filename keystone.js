@@ -7,8 +7,8 @@ let keystone = require('keystone');
 let pkg = require('./package.json');
 
 keystone.init({
-	'name': 'devday',
-	'brand': 'devday',
+	'name': 'Utvecklardag',
+	'brand': 'Utvecklardag',
 
 	'cloudinary secure': true,
 

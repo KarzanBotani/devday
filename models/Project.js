@@ -10,7 +10,6 @@ let Project = new keystone.List('Project', {
 
 Project.add({
 	title: { type: String, required: true, label: 'Titel' },
-	projectOwner: { type: Types.Relationship, ref: 'User', index: true, many: true, label: 'Projekt ägare' },
 	state: {
 		type: Types.Select,
 		options: [
@@ -32,10 +31,9 @@ Project.add({
 	},
 	image: { type: Types.CloudinaryImage, label: 'Bild' },
 	content: {
-		brief: { type: Types.Html, wysiwyg: true, height: 150, label: 'Ingress' },
+		brief: { type: Types.Html, wysiwyg: true, height: 150, label: 'Kort beskrivning' },
 		extended: { type: Types.Html, wysiwyg: true, height: 300, label: 'Projektbeskrivning' },
 	},
-	participants: { type: Types.Relationship, ref: 'User', index: true, many: true, label: 'Deltagare' },
 	categories: { type: Types.Relationship, ref: 'ProjectCategory', many: true, label: 'Kategori(er)' },
 });
 
