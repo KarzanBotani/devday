@@ -3,8 +3,8 @@
 require('dotenv').config();
 
 // Require keystone
-let keystone = require('keystone'),
-	pkg = require('./package.json');
+let keystone = require('keystone');
+let pkg = require('./package.json');
 
 keystone.init({
 	'name': 'devday',
@@ -25,6 +25,7 @@ keystone.init({
 	'mailgun domain': process.env.MAILGUN_DOMAIN,
 
 	'mongo': process.env.MONGO_URI || 'mongodb://localhost/' + pkg.name,
+	'port': process.env.PORT || 3000,
 
 	'auth': true,
 	'auto update': true,
