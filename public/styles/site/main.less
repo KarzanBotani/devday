@@ -18,13 +18,53 @@
   src: url('../fonts/Summit_OpenType/SummitRegular-Solid.otf');
 }
 
+@import url('https://fonts.googleapis.com/css?family=Oswald:300,500|Roboto+Mono|Roboto+Condensed:300,700');
+
+
+@font-bread: font-family: 'Roboto Condensed', sans-serif;
+@font-head: font-family: 'Oswald', sans-serif;
+
+// @color-hi: #fc7376:
+// @color-hi (när det är med opacity, tex över bild): #FD6769:
+
+
+@color-black: #292C33;
+@color-shade: #f8f8f8;
+
 body {
   margin-top: 70px;
   font-weight: 300;
   font-size: 14px;
-  color: #000000;
-  background-color: #FFFFF0;
+  color: #292C33;
+  // background-color: #FFFFF0;
+  background-color: #FFFFFF;
+  font-family: 'Roboto Condensed', sans-serif;
 }
+
+p {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+
+// Titlarna 
+
+h3 {
+  font-family: 'Roboto Mono', sans-serif;
+  font-size: 1.4em;
+  text-transform: lowercase;
+
+
+}
+
+// Snedsteck Span
+
+.hightlight {
+  color: #FD6769;
+}
+
+
+
+
 
 #body {
   margin-bottom: 50px;
@@ -35,15 +75,17 @@ body {
   position: absolute;
   bottom: 0;
   width: 100%;
-  background-color: #f8f8f8;
-  border: 1px solid #e7e7e7;
+  // background-color: @color-shade;
+  // border: 1px solid @color-shade;
 }
 
 /* nav */
 .navbar-default {
-  // background-color: #d3438c;
-  background-color: #FFD39E;
-  border-bottom: 1px solid black;
+  // background-color: #FFD39E;
+  background-color: #FFF;
+  // background-color: #EDEEF3;
+
+  // border-bottom: 1px solid black;
   border-radius: 0;
   text-transform: uppercase;
   width: 100%;
@@ -54,25 +96,30 @@ body {
 
   .navbar-nav {
     // font-size: 20px;
-    margin: 10px;
+    margin: 20px 0;
+    
 
     li > a {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 300;
       color: black;
-      letter-spacing: 1px;
-      font-size: 17px;
-      padding: 10px;
+      letter-spacing: 1.4px;
+      font-size: 16px;
+      padding: 0 1.9em;
     }
   }
 
   .navbar-nav > .active > a {
     color: black;
-    background-color: #FFFFF0;
-    border: 1px solid black;
-    border-radius: 4px;
+    background-color: #fc7376;
+    // border: 1px solid black;
+    // border-radius: 4px;
+    // padding: 10px 1.4em;
   }
 
   .navbar-toggle {
-    border: 1px solid black;
+    // border: 1px solid black;
+    border: none;
 
     .icon-bar {
       background-color: black;
@@ -83,11 +130,11 @@ body {
 .navbar-default .navbar-toggle,
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus {
-  background-color: #FFFFF0;
+  // background-color: #FFFFF0;
 }
 
 .navbar-collapse {
-  border-color: black !important;
+  // border-color: black !important;
 }
 
 .nav-image-div {
