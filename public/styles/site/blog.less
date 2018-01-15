@@ -1,9 +1,8 @@
 #blogDropdownMenu {
   text-transform: uppercase;
-
-  border: none;
-  border-radius: 0;
   background-color: #ffd39e;
+  border: 1px solid black;
+  border-radius: 4px;
 }
 
 .post {
@@ -23,6 +22,8 @@
 
   .blog-published-date {
     font-size: 25px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
 
     position: absolute;
     left: 0;
@@ -33,6 +34,10 @@
     opacity: .8;
     color: #fdf6df;
     background-color: #d3438c;
+
+    .blog-post-date {
+      padding-left: 10px;
+    }
   }
 }
 
@@ -145,12 +150,6 @@
         margin-top: 10px;
       }
 
-      .blog-textbody {
-        // overflow: hidden;
-        // text-overflow: "…";
-        // max-height: 113px;
-      }
-
       .blog-post-author {
         font-style: italic;
 
@@ -159,27 +158,14 @@
 
       .blog-post-category {
         font-style: italic;
-
-        // position: absolute;
         right: 150px;
         bottom: 15px;
       }
 
       .read-more {
         line-height: 40px;
-
-        // position: absolute;
         right: 0;
-        // bottom: 15px;
-
-        // height: 40px;
-        // padding: 0;
-
-        // text-align: center;
-        // text-transform: uppercase;
-
         color: #000;
-        // background-color: #ffd39e;
 
           a {
             height: auto;

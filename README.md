@@ -1,2 +1,2 @@
 # devday
-A website for Odd Hill's Developer Days. Built using KeystoneJS.
+A project for Odd Hill's Utvecklardag (Developer's Day).
