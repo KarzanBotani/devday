@@ -21,7 +21,7 @@ keystone.init({
 	'mailgun api key': process.env.MAILGUN_API_KEY,
 	'mailgun domain': process.env.MAILGUN_DOMAIN,
 
-	'mongo': process.env.MONGO_URI || 'mongodb://localhost/' + pkg.name,
+	// 'mongo': process.env.MONGO_URI || 'mongodb://localhost/' + pkg.name,
 	'port': process.env.PORT || 3000,
 
 	'auth': true,
