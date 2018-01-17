@@ -6,6 +6,15 @@ mixin project(project)
       h4.projects-title.text-center: a(href='/projects/project/' + project.slug)= project.title
       if project.content.brief
         .projects-text.p!= project.content.brief
+      .projects-category
+        if project.categories && project.categories.length
+            |&nbsp;
+            each cat, cat_i in project.categories
+              a(href='/projects/' + cat.key)= '#' + cat.name
+              if cat_i < project.categories.length - 1
+                |&nbsp;
+              else
+                |&nbsp;
 
 block intro
   .container
