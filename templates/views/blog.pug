@@ -21,7 +21,7 @@ mixin post(post)
 						each cat, i in post.categories
 							a(href='/blog/' + cat.key)= '#' + cat.name
 							if i < post.categories.length - 1
-								| ,&nbsp;
+								|&nbsp;
 							else
 								|&nbsp;
 				if post.content.extended

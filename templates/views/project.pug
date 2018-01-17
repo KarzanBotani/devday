@@ -22,6 +22,6 @@ block content
           each cat, cat_i in data.project.categories
             a(href='/projects/' + cat.key)= '#' + cat.name
             if cat_i < data.project.categories.length - 1
-              | ,&nbsp;
+              |&nbsp;
             else
               |&nbsp;
