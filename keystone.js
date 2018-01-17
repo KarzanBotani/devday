@@ -1,8 +1,5 @@
-// Simulate config options from your production environment by
-// customising the .env file in your project's root folder.
 require('dotenv').config();
 
-// Require keystone
 let keystone = require('keystone');
 let pkg = require('./package.json');
 
@@ -29,10 +26,14 @@ keystone.init({
 
 	'auth': true,
 	'auto update': true,
-	'cookie secret': process.env.COOKIE_SECRET || 'devday',
+	'cookie secret': process.env.COOKIE_SECRET || 'utvecklardag',
 	'session': true,
 	'session store': 'mongo',
 	'user model': 'User',
+
+	'wysiwyg override toolbar': false,
+	'wysiwyg additional plugins': 'codesample',
+	'wysiwyg additional buttons': 'codesample',
 });
 
 keystone.import('models');

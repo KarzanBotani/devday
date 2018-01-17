@@ -61,6 +61,8 @@ block content
                 li.disabled: a(href='?page=' + data.projects.totalPages): span.entypo.glyphicon.glyphicon-chevron-right
         else
           if data.category
-            h3.text-muted Det finns för närvarande inga projekt i kategorin #{data.category.name}.
+            .col-xs-12.col-sm-offset-2.col-sm-8.col-md-8
+              h4.text-center Det finns för närvarande inga projekt i kategorin #{data.category.name}.
           else
-            h3.text-muted Det finns för nuvarande inga projekt.
+            .col-xs-12.col-sm-offset-2.col-sm-8.col-md-8
+              h4.text-center Det finns för nuvarande inga projekt.
