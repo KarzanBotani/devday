@@ -1,7 +1,7 @@
 extends ../layouts/default
 
 mixin project(project)
-  .col-xs-12.col-sm-3
+  .col-xs-12.col-sm-4.col-md-3
     .projects(data-ks-editable=editable(user, { list: 'Project', id: project.id }))
       h4.projects-title.text-center: a(href='/projects/project/' + project.slug)= project.title
       if project.content.brief
