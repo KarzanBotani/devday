@@ -25,6 +25,6 @@ block content
           each cat, cat_i in data.post.categories
             a(href='/blog/' + cat.key)= '#' + cat.name
             if cat_i < data.post.categories.length - 1
-              | ,
+              | ,&nbsp;
             else
-              |
+              |&nbsp;

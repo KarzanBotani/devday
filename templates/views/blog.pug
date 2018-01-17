@@ -21,9 +21,9 @@ mixin post(post)
 						each cat, i in post.categories
 							a(href='/blog/' + cat.key)= '#' + cat.name
 							if i < post.categories.length - 1
-								| ,
+								| ,&nbsp;
 							else
-								|
+								|&nbsp;
 				if post.content.extended
 					.read-more
 						a(href='/blog/post/' + post.slug).blog-read-more Läs mer
