@@ -53,7 +53,7 @@ exports = module.exports = function (req, res) {
 		}
 	});
 
-	// Load the posts
+	// pagination
 	view.on('init', function (next) {
 
 		let q = keystone.list('Post').paginate({
@@ -77,6 +77,5 @@ exports = module.exports = function (req, res) {
 		});
 	});
 
-	// Render the view
 	view.render('blog');
 };

@@ -17,7 +17,7 @@ exports = module.exports = function (req, res) {
 		users: [],
 	};
 
-  // LOAD USERS
+  // load users
 	view.on('init', function (next) {
 		keystone.list('User').model
 							.find()
@@ -30,7 +30,7 @@ exports = module.exports = function (req, res) {
 
 								locals.data.users = results;
 
-			// LOAD COUNTS FOR EACH USER
+								// load counts for each user
 								async.each(locals.data.users, function (user, next) {
 
 									keystone.list('Project')
@@ -48,7 +48,7 @@ exports = module.exports = function (req, res) {
 							});
 	});
 
-	// LOAD CATEGORIES
+	// load categories
 	view.on('init', function (next) {
 		keystone.list('ProjectCategory').model
 										.find()
@@ -61,7 +61,7 @@ exports = module.exports = function (req, res) {
 
 											locals.data.categories = results;
 
-											// LOAD COUNTS FOR EACH CATEGORY
+											// load counts for each category
 											async.each(locals.data.categories, function (category, next) {
 
 												keystone.list('Project')
@@ -80,7 +80,7 @@ exports = module.exports = function (req, res) {
 										});
 	});
 
-	/* LOAD USER FILTER */
+	// load user filter
 	view.on('init', function (next) {
 
 		if (req.params.user) {
@@ -96,7 +96,7 @@ exports = module.exports = function (req, res) {
 		}
 	});
 
-	/* LOAD CURRENT CATEGORY FILTER */
+	// load *current* category filter
 	view.on('init', function (next) {
 
 		if (req.params.category) {
@@ -112,7 +112,7 @@ exports = module.exports = function (req, res) {
 		}
 	});
 
-	/* PAGINATION */
+	// pagination
 	view.on('init', function (next) {
 
 		var q = keystone.list('Project').paginate({

@@ -4,7 +4,9 @@ block content
   .container: .row: .col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2.post-div
     article
       span.back-button
-        a(href='/blog') &larr; tillbaka
+        a(href='/blog')
+          span.highlight &larr;
+          | tillbaka
       hr
       if !data.post
         h2 Ogiltigt inlägg.
@@ -19,6 +21,7 @@ block content
         .post-extended
           != data.post.content.extended
           hr
+        .post-category
           each cat, cat_i in data.post.categories
             a(href='/blog/' + cat.key)= '#' + cat.name
             if cat_i < data.post.categories.length - 1

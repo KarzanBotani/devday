@@ -5,7 +5,6 @@ exports = module.exports = function (req, res) {
 	let view = new keystone.View(req, res);
 	let locals = res.locals;
 
-  // SET LOCALS
 	locals.section = 'projects';
 	locals.filters = {
 		project: req.params.project,
@@ -14,7 +13,7 @@ exports = module.exports = function (req, res) {
 		projects: [],
 	};
 
-  // LOAD CURRENT PROJECT
+	// load current project
 	view.on('init', function (next) {
 
 		let q = keystone.list('Project').model.findOne({
@@ -28,7 +27,7 @@ exports = module.exports = function (req, res) {
 		});
 	});
 
-  // LOAD ALL PROJECTS
+  // load all projects
 	view.on('init', function (next) {
 
 		let q = keystone.list('Project').model.find().where('state', 'published').sort('-publishedDate').populate('projectOwner');
@@ -40,5 +39,4 @@ exports = module.exports = function (req, res) {
 	});
 
 	view.render('project');
-
 };

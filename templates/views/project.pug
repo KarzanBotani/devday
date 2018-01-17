@@ -5,15 +5,17 @@ block content
     .row
       .col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2
         span.back-button
-          a(href='/projects') &larr; tillbaka
+          a(href='/projects')
+            span.highlight &larr;
+            | tillbaka
         hr
-        h3.text-center= data.project.title
+        h2.project-title.text-center= data.project.title
 
       .col-sm-10.col-sm-offset-1.col-md-6.col-md-offset-3.project-body
         .project-brief!= data.project.content.brief
         .project-extended!= data.project.content.extended
 
-      .col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2
+      .col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2.project-category
         hr
         if data.project.categories && data.project.categories.length
           |&nbsp;

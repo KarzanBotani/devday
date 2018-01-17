@@ -3,9 +3,8 @@ let keystone = require('keystone');
 exports = module.exports = function (req, res) {
 
 	let view = new keystone.View(req, res);
-	let locals = res.locals;
+	let locals = res.locals
 
-	// Set locals
 	locals.section = 'blog';
 	locals.filters = {
 		post: req.params.post,
@@ -14,7 +13,6 @@ exports = module.exports = function (req, res) {
 		posts: [],
 	};
 
-	// Load the current post
 	view.on('init', function (next) {
 
 		let q = keystone.list('Post').model.findOne({
@@ -41,6 +39,5 @@ exports = module.exports = function (req, res) {
 
 	});
 
-	// Render the view
 	view.render('post');
 };

@@ -1,32 +1,10 @@
-@font-face {
-  font-family: 'SummitMediumInline';
-  src: url('../fonts/Summit_OpenType/SummitMedium-Inline.otf');
-}
-
-@font-face {
-  font-family: 'SummitBoldSolid';
-  src: url('../fonts/Summit_OpenType/SummitBold-Solid.otf');
-}
-
-@font-face {
-  font-family: 'SummitLightDisplay';
-  src: url('../fonts/Summit_OpenType/SummitLight-Display.otf');
-}
-
-@font-face {
-  font-family: 'SummitRegularSolid';
-  src: url('../fonts/Summit_OpenType/SummitRegular-Solid.otf');
-}
-
 @import url('https://fonts.googleapis.com/css?family=Oswald:300,500|Roboto+Mono|Roboto+Condensed:300,700');
-
 
 @font-bread: font-family: 'Roboto Condensed', sans-serif;
 @font-head: font-family: 'Oswald', sans-serif;
 
 // @color-hi: #fc7376:
 // @color-hi (när det är med opacity, tex över bild): #FD6769:
-
 
 @color-black: #292C33;
 @color-shade: #f8f8f8;
@@ -36,7 +14,6 @@ body {
   font-weight: 300;
   font-size: 14px;
   color: #292C33;
-  // background-color: #FFFFF0;
   background-color: #FFFFFF;
   font-family: 'Roboto Condensed', sans-serif;
 }
@@ -45,26 +22,17 @@ p {
   font-family: 'Roboto Condensed', sans-serif;
 }
 
-
-// Titlarna 
-
+/* titles */
 h3 {
   font-family: 'Roboto Mono', sans-serif;
   font-size: 1.4em;
   text-transform: lowercase;
-
-
 }
 
-// Snedsteck Span
-
-.hightlight {
+/* dash-span */
+.highlight {
   color: #FD6769;
 }
-
-
-
-
 
 #body {
   margin-bottom: 50px;
@@ -75,17 +43,11 @@ h3 {
   position: absolute;
   bottom: 0;
   width: 100%;
-  // background-color: @color-shade;
-  // border: 1px solid @color-shade;
 }
 
 /* nav */
 .navbar-default {
-  // background-color: #FFD39E;
   background-color: #FFF;
-  // background-color: #EDEEF3;
-
-  // border-bottom: 1px solid black;
   border-radius: 0;
   text-transform: uppercase;
   width: 100%;
@@ -95,9 +57,7 @@ h3 {
   left: 0;
 
   .navbar-nav {
-    // font-size: 20px;
     margin: 20px 0;
-    
 
     li > a {
       font-family: 'Oswald', sans-serif;
@@ -112,29 +72,15 @@ h3 {
   .navbar-nav > .active > a {
     color: black;
     background-color: #fc7376;
-    // border: 1px solid black;
-    // border-radius: 4px;
-    // padding: 10px 1.4em;
   }
 
   .navbar-toggle {
-    // border: 1px solid black;
     border: none;
 
     .icon-bar {
       background-color: black;
     }
   }
-}
-
-.navbar-default .navbar-toggle,
-.navbar-default .navbar-toggle:hover,
-.navbar-default .navbar-toggle:focus {
-  // background-color: #FFFFF0;
-}
-
-.navbar-collapse {
-  // border-color: black !important;
 }
 
 .nav-image-div {
@@ -145,6 +91,21 @@ h3 {
     margin-left: 5px;
   }
 }
+
+/* contact */
+.contact-div {
+  margin-top: 10px;
+
+    .contact-button {
+      background-color: #fc7376;
+      letter-spacing: 1.4px;
+      font-size: 16px;
+      float: right;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+}
+
 
 /* nav media query */
 @media (min-width: 768px) {
@@ -162,5 +123,13 @@ h3 {
 @media (min-width: 601px) {
   body {
     margin-top: 90px;
+  }
+}
+
+/* flash messages */
+@media (min-width: 768px) {
+
+  #flash-messages {
+    width: 500px;
   }
 }

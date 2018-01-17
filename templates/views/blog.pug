@@ -14,7 +14,7 @@ mixin post(post)
 				.blog-textbody
 					p!= post.content.brief
 				.blog-post-author
-					span!= post.author.name.full
+					span!= '- ' + post.author.name.full
 				.blog-post-category
 					if post.categories && post.categories.length
 						|
@@ -28,13 +28,13 @@ mixin post(post)
 					.read-more
 						a(href='/blog/post/' + post.slug).blog-read-more Läs mer
 
-
-
 block intro
 	.container
 		.row
 			.col-xs-6.col-sm-10.col-md-10
-				h3 /Blogg
+				h3
+					span.highlight /
+					| blogg
 			.col-xs-6.col-sm-2.col-md-2.category-dropdown
 				if data.categories.length
 					.dropdown
@@ -72,6 +72,3 @@ block content
 						h3.text-muted Det finns för närvarande inga blogginlägg i kategorin #{data.category.name}.
 					else
 						h3.text-muted Det finns för nuvarande inga blogginlägg!
-
-
-

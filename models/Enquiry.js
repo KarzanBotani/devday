@@ -58,7 +58,7 @@ Enquiry.schema.methods.sendNotificationEmail = function (callback) {
 				name: 'Utvecklardag',
 				email: 'utvecklardag@oddhill.se',
 			},
-			subject: 'New enquiry for categories',
+			subject: 'Ny kontaktförfrågan @ Utvecklardag!',
 			enquiry: enquiry,
 			brand: brand,
 		}, callback);

@@ -6,7 +6,6 @@ exports = module.exports = function (req, res) {
 	let view = new keystone.View(req, res);
 	let locals = res.locals;
 
-	// Set locals
 	locals.section = 'contact';
 	locals.enquiryTypes = Enquiry.fields.enquiryType.ops;
 	locals.formData = req.body || {};
@@ -20,12 +19,10 @@ exports = module.exports = function (req, res) {
 		let updater = newEnquiry.getUpdateHandler(req);
 
 		updater.process(req.body, {
-			flashErrors: true,
-			fields: 'name, email, phone, enquiryType, message',
-			errorMessage: 'There was a problem submitting your enquiry:',
+			fields: 'name, email, enquiryType',
 		}, function (err) {
 			if (err) {
-				locals.validationErrors = err.errors;
+				req.flash('warning', 'Du har glömt att fylla i obligatoriska fält!');
 			} else {
 				locals.enquirySubmitted = true;
 			}
