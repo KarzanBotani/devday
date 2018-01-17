@@ -10,9 +10,9 @@ exports = module.exports = function (req, res) {
 	locals.enquiryTypes = Enquiry.fields.enquiryType.ops;
 	locals.formData = req.body || {};
 	locals.validationErrors = {};
+	locals.error = false;
 	locals.enquirySubmitted = false;
 
-	// On POST requests, add the Enquiry item to the database
 	view.on('post', { action: 'contact' }, function (next) {
 
 		let newEnquiry = new Enquiry.model();
@@ -22,7 +22,7 @@ exports = module.exports = function (req, res) {
 			fields: 'name, email, enquiryType',
 		}, function (err) {
 			if (err) {
-				req.flash('warning', 'Du har glömt att fylla i obligatoriska fält!');
+				locals.error = true;
 			} else {
 				locals.enquirySubmitted = true;
 			}

@@ -11,10 +11,10 @@ Enquiry.add({
 	email: { type: Types.Email, required: true },
 	phone: { type: String },
 	enquiryType: { type: Types.Select, options: [
-		{ value: 'question', label: 'Jag har en fråga' },
-		{ value: 'devday', label: 'Jag vill anmäla mig till utvecklardagen!' },
 		{ value: 'client', label: 'Intresseanmälan om konsulttid' },
-	], required: true, emptyOption: false },
+		{ value: 'question', label: 'Jag har en fråga' },
+		{ value: 'devday', label: 'Jag vill anmäla mig till Utvecklardagen!' },
+	], required: true },
 	message: { type: Types.Markdown },
 	createdAt: { type: Types.Date, default: Date.now },
 });

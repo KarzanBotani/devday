@@ -11,20 +11,51 @@ block content
 	.container
 		if enquirySubmitted
 			.row: .col-xs-12.col-sm-offset-2.col-sm-8.col-md-offset-3.col-md-6.contact-div
-				h3.text-center Tack för att du kontaktar oss!
+				h4.text-center.contact-submitted Tack för att du kontaktar oss!
+				//- form(method='post')
+				//- 	input(type='hidden', name='action', value='contact')
+				//- 	.form-group(class=validationErrors.name ? 'has-error' : null)
+				//- 		label Namn
+				//- 			span.highlight *
+				//- 		input(type='text', name='name.full', value=formData['name.full']).form-control
+				//- 	.form-group(class=validationErrors.email ? 'has-error' : null)
+				//- 		label E-post
+				//- 			span.highlight *
+				//- 		input(type='email', name='email', value=formData.email).form-control
+				//- 	.form-group
+				//- 		label Telefonnummer
+				//- 		input(type='text', name='phone', value=formData.phone, placeholder='(frivilligt)').form-control
+				//- 	.form-group(class=validationErrors.enquiryType ? 'has-error' : null)
+				//- 		label Vad har du på hjärtat?
+				//- 			span.highlight *
+				//- 		select(name='enquiryType').form-control
+				//- 			option(value='')
+				//- 			each type in enquiryTypes
+				//- 				option(value=type.value, selected=formData.enquiryType == type.value)= type.label
+				//- 	.form-group(class=validationErrors.message ? 'has-error' : null)
+				//- 		label Meddelande
+				//- 		textarea(name='message', placeholder='Lämna oss ett meddelande!' rows=4).form-control= formData.message
+				//- 	.form-actions
+				//- 		button(type='submit').btn.contact-button Skicka
+		else if error
+			.row: .col-xs-12.col-sm-offset-2.col-sm-8.col-md-offset-3.col-md-6.contact-div
+				h4.text-center.contact-submitted Se gärna över de obligatoriska fälten!
 				form(method='post')
 					input(type='hidden', name='action', value='contact')
 					.form-group(class=validationErrors.name ? 'has-error' : null)
 						label Namn
+							span.highlight *
 						input(type='text', name='name.full', value=formData['name.full']).form-control
 					.form-group(class=validationErrors.email ? 'has-error' : null)
 						label E-post
+							span.highlight *
 						input(type='email', name='email', value=formData.email).form-control
 					.form-group
 						label Telefonnummer
 						input(type='text', name='phone', value=formData.phone, placeholder='(frivilligt)').form-control
 					.form-group(class=validationErrors.enquiryType ? 'has-error' : null)
-						label Hur kan vi hjälpa dig?
+						label Vad har du på hjärtat?
+							span.highlight *
 						select(name='enquiryType').form-control
 							option(value='')
 							each type in enquiryTypes
@@ -33,7 +64,7 @@ block content
 						label Meddelande
 						textarea(name='message', placeholder='Lämna oss ett meddelande!' rows=4).form-control= formData.message
 					.form-actions
-						button(type='submit').btn.disabled.contact-button Skicka
+						button(type='submit').btn.contact-button Skicka
 		else
 			.row: .col-xs-12.col-sm-offset-2.col-sm-8.col-md-offset-3.col-md-6.contact-div
 				form(method='post')
@@ -50,7 +81,7 @@ block content
 						label Telefonnummer
 						input(type='text', name='phone', value=formData.phone, placeholder='(frivilligt)').form-control
 					.form-group(class=validationErrors.enquiryType ? 'has-error' : null)
-						label Hur kan vi hjälpa dig?
+						label Vad har du på hjärtat?
 							span.highlight *
 						select(name='enquiryType').form-control
 							option(value='')
