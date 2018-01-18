@@ -10,8 +10,9 @@ html
 		title= 'Utvecklardag'
 		link(rel="shortcut icon", href="/favicon.ico", type="image/x-icon")
 		link(href="https://fonts.googleapis.com/css?family=Roboto:500", rel="stylesheet")
-		link(href="/styles/lightslider.css", rel="stylesheet")
-		link(href="/styles/site.min.css", rel="stylesheet")
+		link(href="styles/lightslider.css", rel="stylesheet")
+		link(href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet")
+		link(href="styles/site.min.css", rel="stylesheet")
 
 		if user && user.canAccessKeystone
 			link(href="/keystone/styles/content/editor.min.css", rel="stylesheet")
@@ -23,9 +24,8 @@ html
 	body
 
 		//- HEADER
-		#header: .container
+		#header: .container: .row: .col-xs-12
 			div(role="navigation").navbar.navbar-default.nav-cent
-				.container-fluid
 					.navbar-header
 						button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
 							span.sr-only Toggle navigation
@@ -51,6 +51,24 @@ html
 			+flash-messages(messages)
 
 			block content
+
+		#footer: .container: .row
+			.col-xs-12.col-sm-12.col-md-12.footer
+				.col-xs-12.col-sm-2.col-sm-offset-3
+					a(href='https://utvecklardag.herokuapp.com/contact')
+						p Kontakt
+				.col-xs-12.col-sm-6
+					p Humlegatan 4, 211 27 Malmö
+				.col-xs-4.col-sm-2.col-sm-offset-3.icons
+					a(href='https://sv-se.facebook.com/oddhill/' target='_blank')
+						i.fab.fa-facebook-f
+				.col-xs-4.col-sm-2.icons
+					a(href='https://www.instagram.com/explore/tags/utvecklardag/' target='_blank')
+						i.fab.fa-instagram
+				.col-xs-4.col-sm-2.icons
+					a(href='https://twitter.com/search?q=%23utvecklardag' target='_blank')
+						i.fab.fa-twitter-square
+
 
 		//- scripts
 		script(src='/js/jquery/jquery-1.11.3.min.js')
