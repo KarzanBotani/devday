@@ -2,7 +2,7 @@ $(document).ready(function () {
 	setTimeout(function () {
 		$('.insta-li').removeClass('hidden');
 		$('.insta-view').animate({ opacity: 1 }, 700);
-	}, 1100);
+	}, 1500);
 });
 
 var feed = new Instafeed({
