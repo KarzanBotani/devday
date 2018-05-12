@@ -10,3 +10,8 @@ block content
           h1.home-date 9:e feb
         .col-xs-12.col-sm-6.col-md-5.insta-view
           ul#instafeed
+
+      .col-xs-12
+        if data.dates
+          each date in data.dates
+            p= date

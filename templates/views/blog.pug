@@ -8,7 +8,7 @@ mixin post(post)
 					img(src=post._.image.fit()).img.img-responsive.pull-left.cover.img-left
 				a(href='/blog/post/' + post.slug)
 					time.blog-published-date
-						span.blog-post-date= post._.publishedDate.format('YYYY-MM-DD')
+						span.blog-post-date= post._.publishedDate.moment().locale('sv').format('LL')
 			.blog-pull-right
 				h2.blog-post-headline: a(href='/blog/post/' + post.slug)= post.title
 				.blog-textbody

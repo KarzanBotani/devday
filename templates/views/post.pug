@@ -15,7 +15,7 @@ block content
           img(src=data.post._.image.fit()).post-img
           h1.post-title= data.post.title
         .post-author
-          span Skrivet av #{data.post.author.name.full}, #{data.post._.publishedDate.format('YYYY/MM/DD')}
+          span Skrivet av #{data.post.author.name.full}, #{data.post._.publishedDate.moment().locale('sv_SE').format('LL')}
         .post-brief
           != data.post.content.brief
         .post-extended

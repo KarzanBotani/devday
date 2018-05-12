@@ -16,15 +16,10 @@ User.schema.virtual('canAccessKeystone').get(function () {
 	return this.isAdmin;
 });
 
-
-/* RELATIONSHIPS */
 User.relationship({ ref: 'Post', path: 'posts', refPath: 'author' });
-
 User.relationship({ ref: 'Project', path: 'projects', refPath: 'projectOwner' });
 User.relationship({ ref: 'Project', path: 'projects', refPath: 'participants' });
 User.relationship({ ref: 'Project', path: 'projects', refPath: 'contactPerson' });
 
-
-/* REGISTRATION */
 User.defaultColumns = 'name, email, isAdmin';
 User.register();

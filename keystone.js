@@ -40,6 +40,7 @@ keystone.import('models');
 
 keystone.set('locals', {
 	_: require('lodash'),
+	moment: require('moment'),
 	env: keystone.get('env'),
 	utils: keystone.utils,
 	editable: keystone.content.editable,
@@ -52,6 +53,7 @@ keystone.set('nav', {
 	projects: ['projects', 'project-categories'],
 	enquiries: 'enquiries',
 	users: 'users',
+	events: 'events',
 });
 
 keystone.set('cloudinary prefix', 'devday');
